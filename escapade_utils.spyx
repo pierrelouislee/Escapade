@@ -1,0 +1,16 @@
+###############################################################################
+#   ESCAPADE
+# Ergonomic Solver using Cellular Automata for PArtial Differential Equation
+#       Copyright (C) 2009 Hubert Frauensohn <hubert.frauensohn@univ-metz.fr>
+#  Distributed under the terms of the GNU General Public License (GPL),
+#  version 2 or any later version.  The full text of the GPL is available at:
+#                  http://www.gnu.org/licenses/
+###############################################################################
+#include(os.path.join(os.path.expanduser(EscapadeInstallDir),'Pattern.spyx'))
+#include(os.path.join(os.path.expanduser(EscapadeInstallDir),'Mesh.spyx'))
+#include(os.path.join(os.path.expanduser(EscapadeInstallDir),'tosimpf.spyx'))
+#include(os.path.join(os.path.expanduser(EscapadeInstallDir),'tobooz.spyx'))
+include "Pattern.spyx"
+include "Mesh.spyx"
+include "tosimpf.spyx"
+include "tobooz.spyx"

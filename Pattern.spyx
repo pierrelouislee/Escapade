@@ -1,0 +1,61 @@
+###############################################################################
+#   ESCAPADE
+# Ergonomic Solver using Cellular Automata for PArtial Differential Equation
+#       Copyright (C) 2009 Nicolas Fressengeas <nicolas@fressengeas.net>
+#       Copyright (C) 2009 Hubert Frauensohn <hubert.frauensohn@univ-metz.fr>
+#  Distributed under the terms of the GNU General Public License (GPL),
+#  version 2 or any later version.  The full text of the GPL is available at:
+#                  http://www.gnu.org/licenses/
+###############################################################################
+
+# This file implements the Pattern class, based on mist
+# It is supposed to be a liste of vectors
+#
+# As this class mostly does a numerical job, it can probably be compiled either is spyx or C++
+import vecteurs
+class Pattern(list):
+	#Construct as a list
+	def __init__(self,l):
+		list.__init__(self,l)
+	
+	def set_ify(self):
+		"""Remove identical elements as they do not make sense in a pattern.
+		"""
+		for i in self:
+			while self.count(i)>1:	
+				self.remove(i)
+		return(self)
+
+	def tuple_ify(self):
+		"""Make each element a tuple.
+		"""
+		v=Pattern([])
+		for i in self:
+			v.append(tuple(i))
+		return(v)
+	
+	def points(self,pos):
+		"""Returns a list of all points addressed by self when centered on pos.
+		It basically is a translation.
+		"""
+		pointlist=Pattern([])
+		for point in self:
+			pointlist.append(vecteurs.sumv(pos,point))
+		return pointlist
+	
+	def member(self,v):
+		"""Returns True if the intersection of self and v is not empty.
+		"""
+		for i in self:
+			for j in v:
+				if (i==j):
+					return(True) 
+		return(False)
+	
+	def save(self,filename):
+		"""Saves the string representation of the pattern into the file named filename.
+		"""
+		f=open(filename,"w")
+		f.write(self.__repr__())
+		f.close()
+

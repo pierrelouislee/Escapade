@@ -1,0 +1,45 @@
+###############################################################################
+#   ESCAPADE
+# Ergonomic Solver using Cellular Automata for PArtial Differential Equation
+#       Copyright (C) 2009 Nicolas Fressengeas <nicolas@fressengeas.net>
+#  Distributed under the terms of the GNU General Public License (GPL),
+#  version 2 or any later version.  The full text of the GPL is available at:
+#                  http://www.gnu.org/licenses/
+###############################################################################
+#
+#
+# This file defines the boozpattern function wich reverses the array notation
+# array(element)(position) to escabooz cellular automaton notation array(position)(element)
+#
+#
+
+def boozpattern(strpatt):
+	newstr=""
+	i=0
+	while (i<len(strpatt)):
+		if strpatt[i]!="?":
+			newstr=newstr+strpatt[i]
+			i+=1
+		elif strpatt[i+1]!="(":
+			print ("( expected at",i+1,"of",strpatt)
+			return (-1)
+		else:
+			i+=2
+			while strpatt[i]!=")":
+				strint=""
+				while (strpatt[i]!=")"):
+					strint=strint+strpatt[i]
+					i+=1
+			if strpatt[i+1]!="(":
+				print("( expected at",i+1,"of",strpatt)
+				return(-1)
+			else:
+				i+=1
+				newstr+="?"
+				while strpatt[i]!=")":
+					newstr+=strpatt[i]
+					i+=1
+			newstr+=")("+strint+")"
+			i+=1
+			
+	return(newstr)
